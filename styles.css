@@ -37,12 +37,35 @@ header {
     align-items: center;
     font-size: 36px;
     cursor: pointer;
-}
-
-.card.flip {
+    transition: transform 0.5s; /* Add transition effect */
+    transform-style: preserve-3d; /* Add 3D transform style */
+  }
+  
+  .card.flip {
     transform: rotateY(180deg);
-}
-
+  }
+  
+  .card.flip.card-front {
+    transform: rotateY(180deg);
+  }
+  
+  .card.card-front,.card.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Add backface visibility */
+  }
+  
+  .card.card-front {
+    transform: rotateY(0deg);
+  }
+  
+  .card.card-back {
+    transform: rotateY(180deg);
+  }
+  
 footer {
     background-color: #f0f0f0;
     padding: 10px;
@@ -53,3 +76,7 @@ footer {
     font-size: 18px;
     color: #666;
 }
+
+.flip {
+    transform: rotateY(180deg);
+  }

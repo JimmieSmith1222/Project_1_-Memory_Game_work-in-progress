@@ -11,10 +11,17 @@ const livesElement = document.getElementById('lives');
 for (let i = 0; i < 8; i++) {
     const card = document.createElement('div');
     card.className = 'card';
-    card.innerHTML = i % 2 === 0? '&#9829;' : '&#9733;';
+    const cardFront = document.createElement('div');
+    cardFront.className = 'card-front';
+    cardFront.innerHTML = i % 2 === 0? '&#9829;' : '&#9733;';
+    card.appendChild(cardFront);
+    const cardBack = document.createElement('div');
+    cardBack.className = 'card-back';
+    cardBack.innerHTML = ''; /* Add a blank back side */
+    card.appendChild(cardBack);
     card.dataset.value = i % 2 === 0? 'heart' : 'star';
     gameBoard.appendChild(card);
-}
+  }
 
 // Add event listener to cards
 gameBoard.addEventListener('click', (event) => {
@@ -26,30 +33,30 @@ gameBoard.addEventListener('click', (event) => {
 
 // Flip card function
 function flipCard(card) {
-    card.classList.add('flip');
+    card.classList.toggle('flip');
     flippedCards.push(card);
     if (flippedCards.length === 2) {
-        checkMatch();
+      checkMatch();
     }
-}
+  }
 
 // Check match function
 function checkMatch() {
     setTimeout(() => {
-        const card1 = flippedCards[0];
-        const card2 = flippedCards[1];
-        if (card1.dataset.value === card2.dataset.value) {
-            matchedCards.push(card1, card2);
-            score++;
-            scoreElement.textContent = `Score: ${score}`;
-        } else {
-            lives--;
-            livesElement.textContent = `Lives: ${lives}`;
-            if (lives === 0) {
-                alert('Game Over!');
-            }
+      const card1 = flippedCards[0];
+      const card2 = flippedCards[1];
+      if (card1.dataset.value === card2.dataset.value) {
+        matchedCards.push(card1, card2);
+        score++;
+        scoreElement.textContent = `Score: ${score}`;
+      } else {
+        lives--;
+        livesElement.textContent = `Lives: ${lives}`;
+        if (lives === 0) {
+          alert('Game Over!');
         }
-        flippedCards.forEach((card) => card.classList.remove('flip'));
-        flippedCards = [];
+      }
+      flippedCards.forEach((card) => card.classList.remove('flip'));
+      flippedCards = [];
     }, 1000);
-}
+  }
