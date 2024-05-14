@@ -1,82 +1,89 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 header {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
 }
 
 #game-name {
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 #score {
-    font-size: 18px;
-    color: #666;
+  font-size: 18px;
+  color: #666;
 }
 
 #game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: 20px;
 }
 
 .card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 36px;
-    cursor: pointer;
-    transition: transform 0.5s; /* Add transition effect */
-    transform-style: preserve-3d; /* Add 3D transform style */
-  }
-  
-  .card.flip {
-    transform: rotateY(180deg);
-  }
-  
-  .card.flip.card-front {
-    transform: rotateY(180deg);
-  }
-  
-  .card.card-front,.card.card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* Add backface visibility */
-  }
-  
-  .card.card-front {
-    transform: rotateY(0deg);
-  }
-  
-  .card.card-back {
-    transform: rotateY(180deg);
-  }
-  
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  cursor: pointer;
+  backface-visibility: hidden; /* Add backface visibility */
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+  transition: transform 0.5s; /* Add transition effect */
+  transform-style: preserve-3d; /* Add 3D transform style */
+}
+
+.card.flip.card-front {
+  transform: rotateY(180deg);
+}
+
+.card.card-front,
+.card.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card.card-front {
+  z-index: 2;
+}
+
+.card.card-back {
+  background-color: #f70000; /* Add background color to back of card */
+  transform: rotateY(180deg);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+}
+
 footer {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-top: 1px solid #ccc;
 }
 
 #lives {
-    font-size: 18px;
-    color: #666;
+  font-size: 18px;
+  color: #666;
 }
 
 .flip {
-    transform: rotateY(180deg);
-  }
+  transform: rotateY(180deg);
+}
